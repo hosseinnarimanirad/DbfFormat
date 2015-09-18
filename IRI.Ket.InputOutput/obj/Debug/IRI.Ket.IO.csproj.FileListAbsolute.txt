@@ -1,0 +1,8 @@
+D:\Programming\100. MainProject\IRI.Ket.InputOutput\bin\Debug\IRI.Ket.IO.dll
+D:\Programming\100. MainProject\IRI.Ket.InputOutput\bin\Debug\IRI.Ket.IO.pdb
+D:\Programming\100. MainProject\IRI.Ket.InputOutput\obj\Debug\IRI.Ket.IO.dll
+D:\Programming\100. MainProject\IRI.Ket.InputOutput\obj\Debug\IRI.Ket.IO.pdb
+E:\Narimani\108. Others\100. MainProject\IRI.Ket.InputOutput\bin\Debug\IRI.Ket.IO.dll
+E:\Narimani\108. Others\100. MainProject\IRI.Ket.InputOutput\bin\Debug\IRI.Ket.IO.pdb
+E:\Narimani\108. Others\100. MainProject\IRI.Ket.InputOutput\obj\Debug\IRI.Ket.IO.dll
+E:\Narimani\108. Others\100. MainProject\IRI.Ket.InputOutput\obj\Debug\IRI.Ket.IO.pdb
