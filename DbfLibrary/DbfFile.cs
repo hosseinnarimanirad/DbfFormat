@@ -424,7 +424,7 @@ namespace Dbf
 
             foreach (System.Data.DataColumn item in columns)
             {
-                result.Add(new DbfFieldDescriptor(item.ColumnName, 'C', 100, 0));
+                result.Add(new DbfFieldDescriptor(item.ColumnName, 'C', 255, 0));
             }
 
             return result;
