@@ -1,0 +1,16 @@
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\bin\Debug\DbfFileTest.exe.config
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\bin\Debug\DbfFileTest.exe
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\bin\Debug\DbfFileTest.pdb
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\bin\Debug\DbfLibrary.dll
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\bin\Debug\DbfLibrary.pdb
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.csprojResolveAssemblyReference.cache
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\MainWindow.g.cs
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\App.g.cs
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest_MarkupCompile.cache
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest_MarkupCompile.lref
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\MainWindow.baml
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.g.resources
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.Properties.Resources.resources
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.csproj.GenerateResource.Cache
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.exe
+C:\Users\Hossein\Desktop\DbfFile\DbfFile\obj\Debug\DbfFileTest.pdb

@@ -1,4 +1,0 @@
-D:\Programming\100. MainProject\IRI.Ket.InputOutput\bin\Release\IRI.Ket.IO.dll
-D:\Programming\100. MainProject\IRI.Ket.InputOutput\bin\Release\IRI.Ket.IO.pdb
-D:\Programming\100. MainProject\IRI.Ket.InputOutput\obj\Release\IRI.Ket.IO.dll
-D:\Programming\100. MainProject\IRI.Ket.InputOutput\obj\Release\IRI.Ket.IO.pdb
