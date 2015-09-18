@@ -550,7 +550,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
                 stream.Close();
 
-                System.IO.File.WriteAllText(Shapefile.GetCpgFileName(fileName), encoding.BodyName);
+                System.IO.File.WriteAllText(GetCpgFileName(fileName), encoding.BodyName);
 
             }
             catch (Exception ex)
@@ -560,6 +560,15 @@ namespace IRI.Ket.ShapefileFormat.Dbf
                 string m2 = message + " " + control.ToString();
 
             }
+        }
+
+        public static string GetCpgFileName(string fileName)
+        {
+            string directoryName = System.IO.Path.GetDirectoryName(fileName);
+
+            string fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(fileName);
+
+            return string.Format("{0}\\{1}.cpg", directoryName, fileNameWithoutExtension);
         }
 
     }
