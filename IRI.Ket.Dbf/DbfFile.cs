@@ -111,12 +111,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             MapFunction = new Dictionary<char, Func<byte[], object>>();
 
             MapFunction.Add('F', ToDouble);
-
-            //MapFunction.Add('O', (input) => double.Parse(Encoding.ASCII.GetString(input)));
-            //MapFunction.Add('+', (input) => double.Parse(Encoding.ASCII.GetString(input)));
-            //MapFunction.Add('I', (input) => int.Parse(Encoding.ASCII.GetString(input)));
-            //MapFunction.Add('Y', (input) => decimal.Parse(Encoding.ASCII.GetString(input)));
-
+             
             MapFunction.Add('O', ToDouble);
             MapFunction.Add('+', ToDouble);
             MapFunction.Add('I', ToInt);
@@ -133,8 +128,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             MapFunction.Add('B', (input) => input);
 
             MapFunction.Add('P', (input) => input);
-
-            //MapFunction.Add('N', (input) => ConvertDbfGeneralToString(input, currentEncoding));
+             
             MapFunction.Add('N', ToDouble);
 
             MapFunction.Add('C', (input) => ConvertDbfGeneralToString(input, currentEncoding));
@@ -153,31 +147,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
                 new List<Func<int, object>>() { i => i },
                 new List<DbfFieldDescriptor>() { DbfFieldDescriptors.GetIntegerField("Id") },
                 Encoding.ASCII);
-            //string path = System.IO.Path.GetDirectoryName(fileName);
-
-            //string tableName = System.IO.Path.GetFileNameWithoutExtension(fileName);
-
-            //string connectionString = string.Format(string.Format("Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; Extended Properties=dBase IV", path));
-
-            ////string connectionString =string.Format( "Provider=VFPOLEDB.1; Data Source=C:\\Temp\\;";
-            //System.Data.OleDb.OleDbConnection connection = new System.Data.OleDb.OleDbConnection(connectionString);
-
-            //connection.Open();
-
-            //string commandString = string.Format("Create Table {0}.dbf (Name Text(10))", tableName);
-
-            //System.Data.OleDb.OleDbCommand createCommand = new System.Data.OleDb.OleDbCommand(commandString, connection);
-
-            //createCommand.ExecuteNonQuery();
-
-            //System.Data.OleDb.OleDbCommand insertCommand = new System.Data.OleDb.OleDbCommand(string.Format("Insert Into {0} Values (' ')", tableName), connection);
-
-            //for (int i = 0; i < numberOfRecords; i++)
-            //{
-            //    insertCommand.ExecuteNonQuery();
-            //}
-
-            //connection.Close();
+          
         }
 
         internal static System.Data.DataTable Read(string dbfFileName, string tableName, Encoding dataEncoding, Encoding fieldHeaderEncoding, bool correctFarsiCharacters)
@@ -198,8 +168,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             System.IO.BinaryReader reader = new System.IO.BinaryReader(stream);
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
-
-            //DbfHeader header = IRI.Ket.IO.BinaryStream.ParseToStructure<DbfHeader>(buffer);
+             
             DbfHeader header = IRI.Ket.IO.BinaryStream.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> columns = new List<DbfFieldDescriptor>();
@@ -211,8 +180,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             for (int i = 0; i < numberOfFields; i++)
             {
                 buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfFieldDescriptor)));
-
-                //columns.Add(IRI.Ket.IO.BinaryStream.ParseToStructure<DbfFieldDescriptor>(buffer));
+                 
                 columns.Add(DbfFieldDescriptor.Parse(buffer, DbfFile.fieldsEncoding));
             }
 
@@ -329,32 +297,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
         }
 
 
-        //class MyClass
-        //{
-        //    public string Value { get; set; }
-        //    public byte Key { get; set; }
-        //}
-
-
-
-
-
-        //private static string CustomEncoding(byte value)
-        //{
-        //    if (value < 128)
-        //    {
-        //        return Encoding.ASCII.GetString(new byte[] { value });
-        //    }
-        //    if (customEncoding.ContainsKey(value))
-        //    {
-        //        return customEncoding[value];
-        //    }
-        //    else
-        //    {
-        //        return "$";
-        //    }
-
-        //}
+         
 
 
         public static List<DbfFieldDescriptor> GetDbfSchema(string dbfFileName)
@@ -406,8 +349,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             for (int i = 0; i < numberOfFields; i++)
             {
                 buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfFieldDescriptor)));
-
-                //columns.Add(IRI.Ket.IO.BinaryStream.ParseToStructure<DbfFieldDescriptor>(buffer));
+                 
                 columns.Add(DbfFieldDescriptor.Parse(buffer, encoding));
             }
 
@@ -565,9 +507,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
                 System.IO.Stream stream = new System.IO.FileStream(fileName, System.IO.FileMode.Create);
 
                 System.IO.BinaryWriter writer = new System.IO.BinaryWriter(stream);
-
-                //List<DbfFieldDescriptor> columns = MakeDbfFields(columnNames, columnTypes);
-
+                 
                 DbfHeader header = new DbfHeader(values.Count, mapping.Count, GetRecordLength(columns), encoding);
 
                 writer.Write(IRI.Ket.IO.BinaryStream.StructureToByteArray(header));
@@ -623,4 +563,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
         }
 
     }
+
+
+   
 }
