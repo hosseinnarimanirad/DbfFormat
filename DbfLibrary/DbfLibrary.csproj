@@ -48,6 +48,11 @@
     <Compile Include="DbfHeader.cs" />
     <Compile Include="FoxProCodePage.cs" />
     <Compile Include="FoxProCodePages.cs" />
+    <Compile Include="Helper\StreamHelper.cs" />
+    <Compile Include="Helper\StringExtensions.cs" />
+    <Compile Include="Model\EsriAttributeDictionary.cs" />
+    <Compile Include="Model\ObjectToDbfTypeMap.cs" />
+    <Compile Include="Model\ObjectToDfbFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

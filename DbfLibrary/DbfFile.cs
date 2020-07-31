@@ -4,9 +4,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Linq;
-using IRI.Ket.ShapefileFormat.Model;
 
-namespace IRI.Ket.ShapefileFormat.Dbf
+namespace Dbf
 {
     public static class DbfFile
     {
@@ -199,7 +198,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-            DbfHeader header = IRI.Msh.Common.Helpers.StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
+            DbfHeader header = StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> columns = new List<DbfFieldDescriptor>();
 
@@ -211,7 +210,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             {
                 buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfFieldDescriptor)));
 
-                columns.Add(IRI.Msh.Common.Helpers.StreamHelper.ParseToStructure<DbfFieldDescriptor>(buffer));
+                columns.Add(StreamHelper.ParseToStructure<DbfFieldDescriptor>(buffer));
             }
 
             reader.Close();
@@ -229,7 +228,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-            DbfHeader header = IRI.Msh.Common.Helpers.StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
+            DbfHeader header = StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> columns = new List<DbfFieldDescriptor>();
 
@@ -254,7 +253,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
         public static Encoding TryDetectEncoding(string dbfFileName)
         {
-            var cpgFile = Shapefile.GetCpgFileName(dbfFileName);
+            var cpgFile = GetCpgFileName(dbfFileName);
 
             if (!System.IO.File.Exists(cpgFile))
             {
@@ -305,7 +304,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-            DbfHeader header = IRI.Msh.Common.Helpers.StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
+            DbfHeader header = StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> fields = new List<DbfFieldDescriptor>();
 
@@ -379,7 +378,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-            DbfHeader header = IRI.Msh.Common.Helpers.StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
+            DbfHeader header = StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> columns = new List<DbfFieldDescriptor>();
 
@@ -496,7 +495,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
                 //}
 
                 //var mode = overwrite ? System.IO.FileMode.Create : System.IO.FileMode.CreateNew;
-                var mode = Shapefile.GetMode(dbfFileName, overwrite);
+                var mode = GetMode(dbfFileName, overwrite);
 
                 System.IO.Stream stream = new System.IO.FileStream(dbfFileName, mode);
 
@@ -504,11 +503,11 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
                 DbfHeader header = new DbfHeader(values.Count(), mapping.Count, GetRecordLength(columns), encoding);
 
-                writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(header));
+                writer.Write(StreamHelper.StructureToByteArray(header));
 
                 foreach (var item in columns)
                 {
-                    writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(item));
+                    writer.Write(StreamHelper.StructureToByteArray(item));
                 }
 
                 //Terminator
@@ -550,7 +549,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
                 stream.Close();
 
-                System.IO.File.WriteAllText(Shapefile.GetCpgFileName(dbfFileName), encoding.BodyName);
+                System.IO.File.WriteAllText(GetCpgFileName(dbfFileName), encoding.BodyName);
 
             }
             catch (Exception ex)
@@ -582,7 +581,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
                 //}
 
                 //var mode = overwrite ? System.IO.FileMode.Create : System.IO.FileMode.CreateNew;
-                var mode = Shapefile.GetMode(dbfFileName, overwrite);
+                var mode = GetMode(dbfFileName, overwrite);
 
                 System.IO.Stream stream = new System.IO.FileStream(dbfFileName, mode);
 
@@ -590,11 +589,11 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
                 DbfHeader header = new DbfHeader(values.Count(), columns.Count, GetRecordLength(columns), encoding);
 
-                writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(header));
+                writer.Write(StreamHelper.StructureToByteArray(header));
 
                 foreach (var item in columns)
                 {
-                    writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(item));
+                    writer.Write(StreamHelper.StructureToByteArray(item));
                 }
 
                 //Terminator
@@ -631,7 +630,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
                 stream.Close();
 
-                System.IO.File.WriteAllText(Shapefile.GetCpgFileName(dbfFileName), encoding.BodyName);
+                System.IO.File.WriteAllText(GetCpgFileName(dbfFileName), encoding.BodyName);
 
             }
             catch (Exception ex)
@@ -689,6 +688,16 @@ namespace IRI.Ket.ShapefileFormat.Dbf
             }
 
             return result;
+        }
+
+        public static string GetCpgFileName(string shpFileName)
+        {
+            return System.IO.Path.ChangeExtension(shpFileName, "cpg");
+        }
+         
+        public static System.IO.FileMode GetMode(string fileName, bool overwrite)
+        {
+            return System.IO.File.Exists(fileName) && overwrite ? System.IO.FileMode.Create : System.IO.FileMode.CreateNew;
         }
 
         #region DataTable
@@ -783,7 +792,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             byte[] buffer = reader.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-            DbfHeader header = IRI.Msh.Common.Helpers.StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
+            DbfHeader header = StreamHelper.ByteArrayToStructure<DbfHeader>(buffer);
 
             List<DbfFieldDescriptor> columns = new List<DbfFieldDescriptor>();
 
@@ -840,7 +849,7 @@ namespace IRI.Ket.ShapefileFormat.Dbf
         //Write
         public static void Write(string fileName, System.Data.DataTable table, Encoding encoding, bool overwrite = false)
         {
-            var mode = Shapefile.GetMode(fileName, overwrite);
+            var mode = GetMode(fileName, overwrite);
 
             System.IO.Stream stream = new System.IO.FileStream(fileName, mode);
 
@@ -850,11 +859,11 @@ namespace IRI.Ket.ShapefileFormat.Dbf
 
             DbfHeader header = new DbfHeader(table.Rows.Count, table.Columns.Count, GetRecordLength(columns), encoding);
 
-            writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(header));
+            writer.Write(StreamHelper.StructureToByteArray(header));
 
             foreach (var item in columns)
             {
-                writer.Write(IRI.Msh.Common.Helpers.StreamHelper.StructureToByteArray(item));
+                writer.Write(StreamHelper.StructureToByteArray(item));
             }
 
             //Terminator

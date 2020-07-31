@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace DbfFileTest
 {
-    public class MyClass
+    public class Foo
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int IdValue { get; set; }
+
+        public DateTime DateValue { get; set; }
+
+        public double DoubleValue { get; set; }
     }
 }

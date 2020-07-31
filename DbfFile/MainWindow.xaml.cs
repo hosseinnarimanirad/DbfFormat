@@ -33,18 +33,30 @@ namespace DbfFileTest
         public void TestSecondWriteMethod()
         {
 
-            var idColumn = DbfFieldDescriptors.GetIntegerField("Id");
-            var nameColumn = DbfFieldDescriptors.GetStringField("Name");
-            var columns = new List<DbfFieldDescriptor>() { idColumn, nameColumn };
 
-            Func<MyClass, object> mapId = myClass => myClass.Id;
-            Func<MyClass, object> mapName = myClass => myClass.Name;
-            var mapping = new List<Func<MyClass, object>>() { mapId, mapName };
+            List<Foo> values = new List<Foo>();
+            values.Add(new Foo() { IdValue = 1, DateValue = DateTime.Now, DoubleValue = 1.1 });
+            values.Add(new Foo() { IdValue = 2, DateValue = DateTime.Now.AddDays(1), DoubleValue = 2.1 });
+            values.Add(new Foo() { IdValue = 3, DateValue = DateTime.Now.AddMonths(1), DoubleValue = 3.1 });
 
-            List<MyClass> values = new List<MyClass>();
-            values.Add(new MyClass() { Id = 1, Name = "name1" });
+            var dbfFileName = "dbffile.dbf";
 
-            DbfFileFormat.Write(@"D:\yourFile.dbf", values, mapping, columns, Encoding.ASCII);
+
+            Dbf.DbfFile.Write<Foo>(
+                dbfFileName,
+                values,
+                new List<ObjectToDbfTypeMap<Foo>>()
+                {
+                    new ObjectToDbfTypeMap<Foo>(new DbfFieldDescriptor("dateField", (char)DbfColumnType.Date, 8, 0),f=>f.DateValue),
+                    new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetIntegerField("idField"),f=>f.IdValue),
+                    new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetDoubleField("doubleField"),f=>f.DoubleValue),
+                },
+                Encoding.ASCII,
+                true);
+
+            var valuesFromFile = Dbf.DbfFile.Read(dbfFileName, true, null, null);
+
+            var test = valuesFromFile.Attributes.Count;
         }
 
         public void TestFirstWriteMethod()
@@ -56,7 +68,7 @@ namespace DbfFileTest
 
             dt.Rows.Add("1", "Chirag");
 
-            DbfFileFormat.Write(@"D:\yourFile.DBF", dt, Encoding.Default);
+            Dbf.DbfFile.Write(@"D:\yourFile.DBF", dt, Encoding.Default);
         }
          
         private void testFirst_Click(object sender, RoutedEventArgs e)
