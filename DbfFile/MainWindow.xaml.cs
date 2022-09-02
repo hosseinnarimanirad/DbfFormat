@@ -47,9 +47,9 @@ namespace DbfFileTest
                 values,
                 new List<ObjectToDbfTypeMap<Foo>>()
                 {
-                    new ObjectToDbfTypeMap<Foo>(new DbfFieldDescriptor("dateField", (char)DbfColumnType.Date, 8, 0),f=>f.DateValue),
-                    new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetIntegerField("idField"),f=>f.IdValue),
-                    new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetDoubleField("doubleField"),f=>f.DoubleValue),
+        new ObjectToDbfTypeMap<Foo>(new DbfFieldDescriptor("dateField", (char)DbfColumnType.Date, 8, 0),f=>f.DateValue),
+        new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetIntegerField("idField"),f=>f.IdValue),
+        new ObjectToDbfTypeMap<Foo>(DbfFieldDescriptors.GetDoubleField("doubleField"),f=>f.DoubleValue),
                 },
                 Encoding.ASCII,
                 true);
@@ -70,7 +70,7 @@ namespace DbfFileTest
 
             Dbf.DbfFile.Write(@"D:\yourFile.DBF", dt, Encoding.Default);
         }
-         
+
         private void testFirst_Click(object sender, RoutedEventArgs e)
         {
             TestFirstWriteMethod();
