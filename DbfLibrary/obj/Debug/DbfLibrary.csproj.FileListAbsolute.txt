@@ -1,4 +1,0 @@
-C:\Users\Hossein\Desktop\DbfFile\DbfLibrary\bin\Debug\DbfLibrary.dll
-C:\Users\Hossein\Desktop\DbfFile\DbfLibrary\bin\Debug\DbfLibrary.pdb
-C:\Users\Hossein\Desktop\DbfFile\DbfLibrary\obj\Debug\DbfLibrary.dll
-C:\Users\Hossein\Desktop\DbfFile\DbfLibrary\obj\Debug\DbfLibrary.pdb
