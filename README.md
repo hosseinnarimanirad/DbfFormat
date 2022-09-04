@@ -1,6 +1,19 @@
 # Usage
 
-## Sample 1. Write Custom Class to dbf file
+
+## Sample 1. Write DataTable to dbf file
+
+``` csharp
+DataTable dt = new DataTable();
+dt.Columns.Add("Id");
+dt.Columns.Add("Name");
+
+dt.Rows.Add("1", "Chirag");
+
+Dbf.DbfFile.Write(@"D:\yourFile.DBF", dt, Encoding.Default);
+```
+
+## Sample 2. Write Custom Class to dbf file
 
 Having a class like `Foo` :
 
@@ -43,16 +56,4 @@ Dbf.DbfFile.Write<Foo>(
 
 ``` csharp
 var valuesFromFile = Dbf.DbfFile.Read(dbfFileName, true, null, null);
-```
-
-## Sample 2. Write DataTable to dbf file
-
-``` csharp
-DataTable dt = new DataTable();
-dt.Columns.Add("Id");
-dt.Columns.Add("Name");
-
-dt.Rows.Add("1", "Chirag");
-
-Dbf.DbfFile.Write(@"D:\yourFile.DBF", dt, Encoding.Default);
 ```
